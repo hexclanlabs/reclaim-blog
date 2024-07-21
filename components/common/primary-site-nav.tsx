@@ -13,18 +13,52 @@ const PrimarySiteNav = () => {
           >
             Home
           </Link>
+          <a
+            href={"https://dev.reclaimprotocol.org/dashboard"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+          >
+            Dashboard
+          </a>
+          <a
+            href={"https://t.me/protocolreclaim"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+          >
+            Community
+          </a>
         </div>
         <div className="flex w-full items-center justify-between md:w-auto">
-          <Logo className="w-8 md:w-10" />
+          <Link href={"/"}>
+            <Logo className="w-8 md:w-10" />
+          </Link>
           <MobileNav />
         </div>
         <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
           <Link
-            href={"/blog"}
+            href={"/posts"}
             className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
           >
             Blogs
           </Link>
+          <a
+            href={"https://www.reclaimprotocol.org/whitepaper"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+          >
+            Whitepaper
+          </a>
+          <a
+            href="https://docs.reclaimprotocol.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+          >
+            Docs
+          </a>
         </div>
       </div>
     </nav>

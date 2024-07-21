@@ -37,6 +37,30 @@ export function MobileNav() {
           <MobileLink onOpenChange={setOpen} href="/blog">
             Blogs
           </MobileLink>
+          <ExtMobileLink
+            onOpenChange={setOpen}
+            href="https://dev.reclaimprotocol.org/dashboard"
+          >
+            Dashboard
+          </ExtMobileLink>
+          <ExtMobileLink
+            onOpenChange={setOpen}
+            href="https://t.me/protocolreclaim"
+          >
+            Community
+          </ExtMobileLink>
+          <ExtMobileLink
+            onOpenChange={setOpen}
+            href="https://www.reclaimprotocol.org/whitepaper"
+          >
+            Whitepaper
+          </ExtMobileLink>
+          <ExtMobileLink
+            onOpenChange={setOpen}
+            href="https://docs.reclaimprotocol.org/"
+          >
+            Docs
+          </ExtMobileLink>
         </div>
       </SheetContent>
     </Sheet>
@@ -44,6 +68,13 @@ export function MobileNav() {
 }
 
 interface MobileLinkProps extends LinkProps {
+  children: React.ReactNode;
+  onOpenChange?: (open: boolean) => void;
+  className?: string;
+}
+
+interface ExtMobileLinkProps extends LinkProps {
+  href: string;
   children: React.ReactNode;
   onOpenChange?: (open: boolean) => void;
   className?: string;
@@ -69,5 +100,28 @@ function MobileLink({
     >
       {children}
     </Link>
+  );
+}
+
+function ExtMobileLink({
+  href,
+  onOpenChange,
+  children,
+  className,
+  ...props
+}: ExtMobileLinkProps) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => {
+        onOpenChange?.(false);
+      }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </a>
   );
 }
