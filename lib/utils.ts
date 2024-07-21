@@ -54,6 +54,9 @@ export function getPostsByTagSlug(posts: Array<Post>, tag: string) {
 
 export function getRandomTailwindColor(): string {
   const strings = ["blue", "red", "green", "indigo", "purple"];
-  var randomnumber = Math.floor(Math.random() * (strings.length - 0 + 1)) + 0;
-  return strings[randomnumber];
+  const randomIndex =
+    strings.length > 0
+      ? Math.floor((new Date().getTime() % strings.length) * Math.random())
+      : 0;
+  return strings[randomIndex];
 }

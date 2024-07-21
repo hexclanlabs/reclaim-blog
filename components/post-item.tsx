@@ -1,7 +1,7 @@
 import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import { cn, formatDate } from "@/lib/utils";
+import { cn, formatDate, getRandomTailwindColor } from "@/lib/utils";
 import { Tag } from "./tag";
 import Image from "next/image";
 
@@ -23,7 +23,7 @@ export function MainPostItem({
   img = "/images/notfound.png",
   date,
   author,
-  tagCheck = false,
+  tagCheck = true,
   tags,
 }: PostItemProps) {
   return (
@@ -49,7 +49,14 @@ export function MainPostItem({
         </Link>
       </div>
       <div className="">
-        <div>
+        <div className="flex gap-3">
+          {tagCheck &&
+            tags &&
+            tags.map((tag) => {
+              return <Tag key={tag} tag={tag} />;
+            })}
+        </div>
+        <div className={!tagCheck ? "mt-4" : ""}>
           <h2 className="text-lg font-semibold leading-snug tracking-tight mt-4 dark:text-white">
             <Link href={"/" + slug}>
               <span className="bg-gradient-to-r from-green-200 to-green-100 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px] dark:from-purple-800 dark:to-purple-900">
@@ -76,10 +83,10 @@ export function PostItem({
   slug,
   title,
   description,
-  img = "/images/notfoun.png",
+  img = "/images/notfound.png",
   date,
   author,
-  tagCheck = false,
+  tagCheck = true,
   tags,
 }: PostItemProps) {
   return (
@@ -105,7 +112,11 @@ export function PostItem({
       </div>
       <div className="">
         <div className="flex gap-3">
-          {tagCheck && tags && tags.map((tag) => <Tag key={tag} tag={tag} />)}
+          {tagCheck &&
+            tags &&
+            tags.map((tag) => {
+              return <Tag key={tag} tag={tag} />;
+            })}
         </div>
         <div className={!tagCheck ? "mt-4" : ""}>
           <h2 className="text-lg font-semibold leading-snug tracking-tight mt-2 dark:text-white line-clamp-1">

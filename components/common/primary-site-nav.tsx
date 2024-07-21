@@ -9,7 +9,7 @@ const PrimarySiteNav = () => {
         <div className="order-1 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row md:justify-end">
           <Link
             href={"/"}
-            className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
           >
             Home
           </Link>
@@ -21,7 +21,7 @@ const PrimarySiteNav = () => {
         <div className="order-2 hidden w-full flex-col items-center justify-start md:order-none md:flex md:w-auto md:flex-1 md:flex-row">
           <Link
             href={"/blog"}
-            className="px-5 py-2 text-sm font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
+            className="px-5 py-2 text-base font-medium text-gray-600 hover:text-blue-500 dark:text-gray-400"
           >
             Blogs
           </Link>
