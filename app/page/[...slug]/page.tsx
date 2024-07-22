@@ -12,20 +12,26 @@ export const metadata: Metadata = {
 
 const POSTS_PER_PAGE = 6;
 
+interface PostPageProps {
+  params: {
+    slug: number;
+  };
+}
+
 interface BlogPageProps {
   searchParams: {
     page?: string;
   };
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams?.page) || 1;
+export default async function BlogPage({ params }: PostPageProps) {
+  const currentPage = Number(params?.slug) || 1;
   const sortedPosts = sortPosts(posts.filter((post) => post.published));
   const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
 
   const displayPosts = sortedPosts.slice(
     POSTS_PER_PAGE * (currentPage - 1),
-    POSTS_PER_PAGE * currentPage,
+    POSTS_PER_PAGE * currentPage
   );
 
   return (
@@ -60,6 +66,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       </div>
       <QueryPagination
         totalPages={totalPages}
+        currentPage={currentPage}
         className="justify-center mt-4"
       />
     </Container>

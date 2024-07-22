@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
 import {
   Pagination,
   PaginationContent,
@@ -13,24 +12,19 @@ import {
 interface QueryPaginationProps {
   totalPages: number;
   className?: string;
+  currentPage?: number;
 }
 
 export function QueryPagination({
   totalPages,
   className,
+  currentPage = 1,
 }: QueryPaginationProps) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const currentPage = Number(searchParams.get("page")) || 1;
-
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
 
   const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set("page", pageNumber.toString());
-    return `${pathname}?${params.toString()}`;
+    return `/page/${pageNumber}`;
   };
 
   return (
