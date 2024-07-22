@@ -6,7 +6,6 @@ import "@/styles/mdx.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import { Tag } from "@/components/tag";
-import Image from "next/image";
 interface PostPageProps {
   params: {
     slug: string[];
@@ -90,7 +89,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div>{post.author}</div>
         <div>{formatDate(post.date)}</div>
       </div>
-      <Image
+      <img
         src={img}
         alt={post.title}
         className="rounded"
@@ -98,7 +97,9 @@ export default async function PostPage({ params }: PostPageProps) {
         height={1080}
       />
       <div className="flex gap-2 mb-2">
-        {post.tags?.map((tag) => <Tag tag={tag} key={tag} />)}
+        {post.tags?.map((tag) => (
+          <Tag tag={tag} key={tag} />
+        ))}
       </div>
       <MDXContent code={post.body} />
     </article>

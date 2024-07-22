@@ -2,7 +2,7 @@ import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import Container from "@/components/container";
-import { getAllTags, sortPosts, sortTagsByCount } from "@/lib/utils";
+import { sortPosts } from "@/lib/utils";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,14 +14,17 @@ const POSTS_PER_PAGE = 6;
 
 interface PostPageProps {
   params: {
-    slug: number;
+    slug: string[];
   };
 }
-
-interface BlogPageProps {
-  searchParams: {
-    page?: string;
-  };
+export async function generateStaticParams(): Promise<
+  PostPageProps["params"][]
+> {
+  const sortedPosts = sortPosts(posts.filter((post) => post.published));
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+  return Array.from({ length: totalPages }, (_, i) => ({
+    slug: [String(i + 1)],
+  }));
 }
 
 export default async function BlogPage({ params }: PostPageProps) {
